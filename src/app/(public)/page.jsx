@@ -357,7 +357,9 @@
 //   );
 // }
 
-
+import { erpApi } from '@/lib/api/erp';
+import { AnimatedCounter } from '@/components/shared/animated-counter';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
