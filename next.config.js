@@ -1,25 +1,41 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  // Only use JS/JSX files
-  pageExtensions: ['jsx', 'js'],
-  
+  // JavaScript / JSX only
+  pageExtensions: ['js', 'jsx'],
+
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'res.cloudinary.com' },
-      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
-      { protocol: 'https', hostname: 'flagcdn.com' },
-      { protocol: 'https', hostname: 'flagsapi.com' },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagsapi.com',
+      },
     ],
   },
-  
-  // ✅ ADD THIS - Fix the ESLint error
+
+  // Ignore ESLint errors during production build
   eslint: {
-    // Set to true if you want to ignore ESLint errors during build
     ignoreDuringBuilds: true,
-    // Specify which directories to lint
-    dirs: ['src'],
   },
-  
+
+  // Ignore TypeScript errors
+  // You are using JS/JSX, so this is generally harmless.
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   async rewrites() {
     return [
       {
@@ -49,15 +65,19 @@ const nextConfig = {
   },
 
   webpack: (config) => {
-    config.externals = [...(config.externals || []), 'bufferutil', 'utf-8-validate'];
-    // Remove TypeScript from resolution
-    config.resolve.extensions = ['.js', '.jsx', '.json'];
+    config.externals = [
+      ...(config.externals || []),
+      'bufferutil',
+      'utf-8-validate',
+    ];
+
+    config.resolve.extensions = [
+      '.js',
+      '.jsx',
+      '.json',
+    ];
+
     return config;
-  },
-  
-  // Disable TypeScript completely
-  typescript: {
-    ignoreBuildErrors: true,
   },
 };
 
