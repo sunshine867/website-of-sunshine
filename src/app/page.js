@@ -1,3 +1,5 @@
+'use client';
+
 import PublicLayout from './(public)/layout';
 import HomePageClient from '@/components/home-page-client';
 
