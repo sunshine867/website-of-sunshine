@@ -1,4 +1,4 @@
-import PublicLayout from '@/(public)/layout';
+import PublicLayout from './(public)/layout';
 import HomePageClient from '@/components/home-page-client';
 
 export default function Page() {
